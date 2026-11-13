@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name – Portfolio</title>
+<meta name="description" content="Portfolio of Your Name: projects, experience and contact details.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f4;
+    --surface: #ffffff;
+    --ink: #14213d;
+    --muted: #4d5b75;
+    --accent: #2f5bff;
+    --line: #d3d9e2;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Newsreader", Georgia, "Times New Roman", serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10151f;
+      --surface: #182030;
+      --ink: #e9edf5;
+      --muted: #a2aec4;
+      --accent: #7f9bff;
+      --line: #2a3448;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.2rem;
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* Intro */
+  header.intro {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 0;
+  }
+  header.intro h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(3rem, 10vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    margin: 0 0 1.5rem;
+  }
+  header.intro p {
+    max-width: 34em;
+    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+    color: var(--muted);
+    margin: 0 0 2rem;
+  }
+  .links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0.7rem 1.3rem;
+    border-radius: 999px;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* Projects */
+  #projects { padding: 4rem 0 5rem; border-top: 1px solid var(--line); }
+  #projects > .wrap > h2 {
+    font-family: var(--display);
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.02em;
+    margin: 0 0 3rem;
+  }
+  .project {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 4.5rem;
+  }
+  .project:nth-child(even) .media { order: 2; }
+  .media {
+    aspect-ratio: 16 / 10;
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+  }
+  .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .media .ph { font-family: var(--display); color: var(--muted); font-size: 1rem; padding: 1rem; text-align: center; }
+  .project h3 {
+    font-family: var(--display);
+    font-size: 1.8rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+  }
+  .project p { margin: 0 0 1rem; color: var(--muted); }
+  .tags { list-style: none; padding: 0; margin: 0 0 1.1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tags li {
+    font-family: var(--display);
+    font-size: 0.85rem;
+    padding: 0.2rem 0.7rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+  .project .more { font-family: var(--display); font-weight: 500; font-size: 1rem; margin-right: 1.2rem; }
+
+  /* Intro layout with photo */
+  .intro-grid { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
+  .photo {
+    width: clamp(200px, 26vw, 320px);
+    aspect-ratio: 4 / 5;
+    border-radius: 14px;
+    overflow: hidden;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    display: grid;
+    place-items: center;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo .ph { font-family: var(--display); font-weight: 700; font-size: 4rem; color: var(--muted); }
+  nav.top { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1.5rem 0 0; font-family: var(--display); font-size: 1rem; }
+  nav.top a { color: var(--ink); text-decoration: none; }
+  nav.top a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* Extra sections */
+  .block { padding: 4rem 0; border-top: 1px solid var(--line); }
+  .block h2 { font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; margin: 0 0 2rem; }
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; }
+  .two-col p { margin: 0 0 1rem; max-width: 34em; }
+  .skills h3 { font-family: var(--display); font-size: 1.1rem; margin: 0 0 0.6rem; }
+  .skills .tags { margin-bottom: 1.4rem; }
+  .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+  .timeline li { position: relative; padding: 0 0 2rem 1.6rem; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -7px; top: 0.7rem;
+    width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
+  }
+  .timeline h3 { font-family: var(--display); font-size: 1.3rem; margin: 0; }
+  .timeline .when { font-family: var(--display); font-size: 0.9rem; color: var(--muted); margin: 0.1rem 0 0.4rem; }
+  .timeline p { margin: 0; color: var(--muted); max-width: 38em; }
+  .contact p { max-width: 34em; color: var(--muted); margin: 0 0 1.5rem; }
+
+  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: 1rem; }
+
+  @media (max-width: 760px) {
+    .project { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 3.5rem; }
+    .project:nth-child(even) .media { order: 0; }
+    .intro-grid, .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .photo { order: -1; width: 180px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- INTRODUCTION: edit your name, blurb and links -->
+<header class="intro">
+  <div class="wrap">
+    <nav class="top" aria-label="Sections">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="intro-grid">
+      <div>
+        <h1>Hi, I’m Your Name.</h1>
+        <p>I’m a [your role] who builds [what you build]. Write two or three sentences here about what you do, what you care about, and what you’re looking for next.</p>
+        <div class="links">
+          <a class="btn primary" href="#projects">See my projects</a>
+          <a class="btn" href="https://github.com/your-username">GitHub</a>
+          <a class="btn" href="mailto:you@example.com">Email me</a>
+        </div>
+      </div>
+      <!-- Your photo: save it as images/profile.jpg -->
+      <div class="photo">
+        <img src="images/profile.jpg" alt="Portrait of Your Name"
+             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'YN'}))">
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- PROJECTS: copy one <article> block per project -->
+<main id="projects">
+  <div class="wrap">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <div class="media">
+        <img src="images/project-one.gif" alt="Short demo of Project One" loading="lazy"
+             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-one.gif'}))">
+      </div>
+      <div>
+        <h3>Project One</h3>
+        <p>Explain what it does, who it’s for, and what you personally built or solved. Two or three sentences is plenty.</p>
+        <ul class="tags"><li>JavaScript</li><li>React</li><li>API</li></ul>
+        <a class="more" href="https://github.com/your-username/project-one">Source code</a>
+        <a class="more" href="https://your-username.github.io/project-one">Live demo</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="media">
+        <img src="images/project-two.png" alt="Screenshot of Project Two" loading="lazy"
+             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-two.png'}))">
+      </div>
+      <div>
+        <h3>Project Two</h3>
+        <p>Describe the problem it solves and one interesting detail, such as a challenge, a result or something you learned.</p>
+        <ul class="tags"><li>Python</li><li>Flask</li></ul>
+        <a class="more" href="https://github.com/your-username/project-two">Source code</a>
+      </div>
+    </article>
+
+    <article class="project">
+      <div class="media">
+        <img src="images/project-three.gif" alt="Short demo of Project Three" loading="lazy"
+             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-three.gif'}))">
+      </div>
+      <div>
+        <h3>Project Three</h3>
+        <p>Keep each description short and specific. Lead with what the project does, then how you built it.</p>
+        <ul class="tags"><li>HTML</li><li>CSS</li></ul>
+        <a class="more" href="https://github.com/your-username/project-three">Source code</a>
+      </div>
+    </article>
+
+  </div>
+</main>
+
+<section class="block" id="about">
+  <div class="wrap two-col">
+    <div>
+      <h2>About me</h2>
+      <p>I'm a student who is focusing on real-time rendering and graphics programming. Experienced with C++, graphics 
+          mathematics, CPU rasterization, and CPU ray tracing. I'm Interested in understanding both the technical, design and narrative aspects 
+          of games. I'm building a portfolio around graphics engineering and game system analysis, while constantly thinking of new ideas about the games that I want to make.</p>
+    </div>
+    <div class="skills">
+      <h2>Skills</h2>
+      <h3>Languages</h3>
+      <ul class="tags"><li>C++</li><li>DirectX 11/12</li><li>Vulkan</li><li>OpenGL</li><li>C</li><li>Python</li><li>Java</li><li>HTML &amp; CSS</li></ul>
+      <h3>Frameworks and tools</h3>
+      <ul class="tags"><li>Unreal Engine</li><li>Git</li><li>Node.js</li></ul>
+      <h3>Other</h3>
+      <ul class="tags"><li>Teamwork</li><li>Problem solving</li><li>Game Design</li><li>Storytelling</li><li>Empathy</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <ul class="timeline">
+      <li>
+        <h3>MSc Computer Games Technology - Abertay University</h3>
+        <p class="when">2026 – Present</p>
+        <p>I'm currently on my first semester including modules of Graphics Programming, Game AI and Game Networking.</p>
+      </li>
+      <li>
+        <h3>BSc Computer Science - Hanoi University of Science and Technology / Troy University</h3>
+        <p class="when">2022-2026</p>
+        <p>I studied in a Computer Science programme of HUST in partner with Troy University. This was a big stepping stone 
+          for me to gain necessary skills and knowledge for game programming. Courses like Data Structures and Algorithms, 
+          Object-Oriented Programming, and Operating Systems were particularly helpful for my current pursuit: Computer Graphics in Video Games.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="block contact" id="contact">
+  <div class="wrap">
+    <h2>Get in touch</h2>
+    <p>I’m open to new opportunities and collaborations. The quickest way to reach me is by email.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:you@example.com">you@example.com</a>
+      <a class="btn" href="https://github.com/your-username">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/your-username">LinkedIn</a>
+      <a class="btn" href="images/cv.pdf">Download CV</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Your Name · <a href="mailto:you@example.com">you@example.com</a></div>
+</footer>
+
+</body>
+</html>
