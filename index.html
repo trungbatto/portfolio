@@ -1,311 +1,456 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Your Name – Portfolio</title>
-<meta name="description" content="Portfolio of Your Name: projects, experience and contact details.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #eef1f4;
-    --surface: #ffffff;
-    --ink: #14213d;
-    --muted: #4d5b75;
-    --accent: #2f5bff;
-    --line: #d3d9e2;
-    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
-    --body: "Newsreader", Georgia, "Times New Roman", serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #10151f;
-      --surface: #182030;
-      --ink: #e9edf5;
-      --muted: #a2aec4;
-      --accent: #7f9bff;
-      --line: #2a3448;
-    }
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--body);
-    font-size: 1.2rem;
-    line-height: 1.6;
-  }
-  a { color: var(--accent); text-underline-offset: 3px; }
-  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
-  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 1.5rem; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trung Nguyen | Graphics Programmer</title>
+    <meta name="description" content="Portfolio of Trung Nguyen: graphics programming projects, skills and education.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'system-ui', 'sans-serif'],
+                        serif: ['Manrope', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            black: '#eaf3fc',
+                            dark: '#f7fbff',
+                            green: '#dcebfa', 
+                            greenLight: '#ffffff', 
+                            grey: '#c9ddf3',
+                            lightGrey: '#b4cdea'
+                        }
+                    },
+                    transitionProperty: {
+                        'width': 'width',
+                        'spacing': 'margin, padding',
+                    }
+                }
+            }
+        }
+    </script>
 
-  /* Intro */
-  header.intro {
-    min-height: 92vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 4rem 0;
-  }
-  header.intro h1 {
-    font-family: var(--display);
-    font-weight: 700;
-    font-size: clamp(3rem, 10vw, 7.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    margin: 0 0 1.5rem;
-  }
-  header.intro p {
-    max-width: 34em;
-    font-size: clamp(1.25rem, 2.4vw, 1.6rem);
-    color: var(--muted);
-    margin: 0 0 2rem;
-  }
-  .links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-  .btn {
-    font-family: var(--display);
-    font-weight: 500;
-    font-size: 1rem;
-    text-decoration: none;
-    padding: 0.7rem 1.3rem;
-    border-radius: 999px;
-    border: 2px solid var(--ink);
-    color: var(--ink);
-  }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eaf3fc; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9db8d8; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7a9cc4; 
+        }
 
-  /* Projects */
-  #projects { padding: 4rem 0 5rem; border-top: 1px solid var(--line); }
-  #projects > .wrap > h2 {
-    font-family: var(--display);
-    font-size: clamp(2rem, 5vw, 3rem);
-    letter-spacing: -0.02em;
-    margin: 0 0 3rem;
-  }
-  .project {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 2.5rem;
-    align-items: center;
-    margin-bottom: 4.5rem;
-  }
-  .project:nth-child(even) .media { order: 2; }
-  .media {
-    aspect-ratio: 16 / 10;
-    border-radius: 10px;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    display: grid;
-    place-items: center;
-  }
-  .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .media .ph { font-family: var(--display); color: var(--muted); font-size: 1rem; padding: 1rem; text-align: center; }
-  .project h3 {
-    font-family: var(--display);
-    font-size: 1.8rem;
-    letter-spacing: -0.01em;
-    margin: 0 0 0.6rem;
-  }
-  .project p { margin: 0 0 1rem; color: var(--muted); }
-  .tags { list-style: none; padding: 0; margin: 0 0 1.1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .tags li {
-    font-family: var(--display);
-    font-size: 0.85rem;
-    padding: 0.2rem 0.7rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: var(--surface);
-  }
-  .project .more { font-family: var(--display); font-weight: 500; font-size: 1rem; margin-right: 1.2rem; }
+        /* Sidebar Scrollbar (Internal) */
+        .sidebar-scroll::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .sidebar-scroll::-webkit-scrollbar-track {
+            background: transparent; 
+        }
+        .sidebar-scroll::-webkit-scrollbar-thumb {
+            background: rgba(30,64,120,0.3); 
+            border-radius: 4px;
+        }
 
-  /* Intro layout with photo */
-  .intro-grid { display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center; }
-  .photo {
-    width: clamp(200px, 26vw, 320px);
-    aspect-ratio: 4 / 5;
-    border-radius: 14px;
-    overflow: hidden;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    display: grid;
-    place-items: center;
-  }
-  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .photo .ph { font-family: var(--display); font-weight: 700; font-size: 4rem; color: var(--muted); }
-  nav.top { display: flex; flex-wrap: wrap; gap: 1.4rem; padding: 1.5rem 0 0; font-family: var(--display); font-size: 1rem; }
-  nav.top a { color: var(--ink); text-decoration: none; }
-  nav.top a:hover { color: var(--accent); text-decoration: underline; }
+        /* Hide scrollbar for connect icons */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
 
-  /* Extra sections */
-  .block { padding: 4rem 0; border-top: 1px solid var(--line); }
-  .block h2 { font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); letter-spacing: -0.02em; margin: 0 0 2rem; }
-  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; }
-  .two-col p { margin: 0 0 1rem; max-width: 34em; }
-  .skills h3 { font-family: var(--display); font-size: 1.1rem; margin: 0 0 0.6rem; }
-  .skills .tags { margin-bottom: 1.4rem; }
-  .timeline { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
-  .timeline li { position: relative; padding: 0 0 2rem 1.6rem; }
-  .timeline li::before {
-    content: ""; position: absolute; left: -7px; top: 0.7rem;
-    width: 12px; height: 12px; border-radius: 50%; background: var(--accent);
-  }
-  .timeline h3 { font-family: var(--display); font-size: 1.3rem; margin: 0; }
-  .timeline .when { font-family: var(--display); font-size: 0.9rem; color: var(--muted); margin: 0.1rem 0 0.4rem; }
-  .timeline p { margin: 0; color: var(--muted); max-width: 38em; }
-  .contact p { max-width: 34em; color: var(--muted); margin: 0 0 1.5rem; }
-
-  footer { border-top: 1px solid var(--line); padding: 2.5rem 0 3rem; color: var(--muted); font-size: 1rem; }
-
-  @media (max-width: 760px) {
-    .project { grid-template-columns: 1fr; gap: 1.2rem; margin-bottom: 3.5rem; }
-    .project:nth-child(even) .media { order: 0; }
-    .intro-grid, .two-col { grid-template-columns: 1fr; gap: 2rem; }
-    .photo { order: -1; width: 180px; }
-  }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-</style>
+        /* Hero Image Overlay */
+        .hero-bg {
+            background-image: url('selfie.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .nav-link.active {
+            color: #2563eb;
+        }
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #2563eb;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-brand-black text-slate-900 font-sans antialiased selection:bg-blue-500 selection:text-white overflow-x-hidden">
 
-<!-- INTRODUCTION: edit your name, blurb and links -->
-<header class="intro">
-  <div class="wrap">
-    <nav class="top" aria-label="Sections">
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="intro-grid">
-      <div>
-        <h1>Hi, I’m Trung Nguyen.</h1>
-        <p>I’m a Computer Games Technology student, currently developing a game engine. I love to find different narrative experiences in video games and films. I'm very interested in both technical and artistic aspects of game development.</p>
-        <div class="links">
-          <a class="btn primary" href="#projects">See my projects</a>
-          <a class="btn" href="https://github.com/trungbatto">GitHub</a>
-          <a class="btn" href="mailto:tn66638@gmail.com">Email me</a>
+    <!-- Top Navigation -->
+    <nav class="fixed top-0 left-0 w-full bg-brand-black/95 backdrop-blur-md z-[60] border-b border-blue-900/15 h-16 flex items-center justify-between px-6 md:px-12">
+        <div class="flex items-center gap-4 cursor-pointer" onclick="window.scrollTo(0,0)">
+            <h1 class="text-xl font-bold tracking-widest uppercase">Trung Nguyen</h1>
         </div>
-      </div>
-      <!-- Your photo: save it as images/profile.jpg -->
-      <div class="photo">
-        <img src="images/profile.jpg" alt="Portrait of Your Name"
-             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'YN'}))">
-      </div>
-    </div>
-  </div>
-</header>
+        <div class="hidden md:flex gap-8 text-sm font-semibold tracking-wider uppercase">
+            <a href="#home" class="nav-link relative hover:text-blue-600 transition-colors py-1">Home</a>
+            <a href="#projects" class="nav-link relative hover:text-blue-600 transition-colors py-1">Projects</a>
+            <a href="#skills" class="nav-link relative hover:text-blue-600 transition-colors py-1">Skills</a>
+            <a href="#education" class="nav-link relative hover:text-blue-600 transition-colors py-1">Education</a>
+            <a href="#resume" class="nav-link relative hover:text-blue-600 transition-colors py-1">Resume</a>
+            <a href="#about" class="nav-link relative hover:text-blue-600 transition-colors py-1">About</a>
+        </div>
+        <div class="md:hidden text-2xl">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </nav>
 
-<!-- PROJECTS: copy one <article> block per project -->
-<main id="projects">
-  <div class="wrap">
-    <h2>Projects</h2>
+    <main class="transition-all duration-300">
+        
+        <!-- Home Section (Left Aligned) -->
+        <section id="home" class="relative min-h-screen flex items-center bg-gradient-to-br from-brand-black via-brand-black to-blue-100 px-12 md:px-24 lg:px-32 pt-28 pb-16">
+            <div class="max-w-7xl w-full mx-auto flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-20">
 
-    <article class="project">
-      <div class="media">
-        <img src="rasterizer.png" alt="Short demo of Project One" loading="lazy"
-             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-one.gif'}))">
-      </div>
-      <div>
-        <h3>Simple CPU Rasterizer</h3>
-        <p>A CPU-based 3D software rasterizer made from scratch, written in C using SDL2. This project implements a complete 3D graphics pipeline entirely on the CPU without relying on GPU rasterization APIs such as OpenGL or DirectX.</p>
-        <p>The renderer supports mesh loading, clipping, perspective projection, textured triangle rasterization, z-buffering, 
-            back-face culling, camera movement, and multiple rendering modes.</p>
-        <ul class="tags"><li>C</li><li>SDL2</li></ul>
-        <a class="more" href="https://github.com/trungbatto/Simple_CPU_Rasterizer">Source code</a>
-      </div>
-    </article>
+                <!-- Introduction -->
+                <div class="text-left max-w-3xl flex flex-col items-start">
+                    <h1 class="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-4 drop-shadow-2xl leading-none">
+                    Trung <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-blue-700">Nguyen</span>
+                </h1>
 
-    <article class="project">
-      <div class="media">
-        <img src="raytracer.png" alt="Screenshot of Project Two" loading="lazy"
-             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-two.png'}))">
-      </div>
-      <div>
-        <h3>Simple CPU Ray Tracer</h3>
-        <p>This project is a basic ray tracer implementation written in C++ using CMake, learned by following Ray Tracing in One Weekend tutorial series.. 
-          It demonstrates ray tracing concepts such as lighting, reflections, refractions, and BVH optimization.</p>
-        <ul class="tags"><li>C++</li><li>CMake</li><li>SDL2</li></ul>
-        <a class="more" href="https://github.com/trungbatto/Simple_CPU_Ray_Tracer">Source code</a>
-      </div>
-    </article>
+                    <div class="w-32 h-1.5 bg-blue-500 mb-8 rounded-full"></div>
 
-    <article class="project">
-      <div class="media">
-        <img src="dx12.png" alt="Screenshot of Project Three" loading="lazy"
-             onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'Add images/project-three.gif'}))">
-      </div>
-      <div>
-        <h3>Project Three</h3>
-        <p>A personal project in development using DirectX 12 API and C++. The goal is to build a graphics engine with modern graphics techniques.</p>
-        <ul class="tags"><li>C++</li><li>DirectX 12</li></ul>
-      </div>
-    </article>
+                    <p class="text-lg md:text-xl text-slate-600 font-light leading-relaxed max-w-2xl text-left">
+                    A <strong class="text-slate-900 font-semibold">Computer Games Technology</strong> student with a particular interest in real-time rendering and graphics programming, currently developing a game engine.
+                    Working primarily with <span class="text-blue-600 font-semibold">C++</span>,
+                    <span class="text-blue-600 font-semibold">DirectX 12</span>, and <span class="text-blue-600 font-semibold">Unreal Engine</span>,
+                    I enjoy exploring both the technical and artistic aspects of game development, alongside discovering diverse narrative experiences through games and film.
+                </p>
 
-  </div>
-</main>
+                    <a href="#projects" class="mt-12 animate-bounce flex items-center justify-center w-12 h-12 rounded-full border border-blue-900/15 hover:border-blue-500 hover:text-blue-600 transition-colors">
+                    <i class="fa-solid fa-arrow-down"></i>
+                </a>
+                </div>
+                
+                <div class="shrink-0 w-64 sm:w-72 lg:w-80 xl:w-96 aspect-[4/5] rounded-2xl overflow-hidden bg-brand-greenLight border border-blue-900/15 shadow-2xl flex items-center justify-center">
+                    <img src="selfie.jpg" alt="Selfie of Trung Nguyen" class="w-full h-full object-cover"
+                         onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'flex flex-col items-center gap-3 p-6 text-center text-slate-500 text-sm font-semibold',innerHTML:'<i class=&quot;fa-solid fa-camera text-4xl text-blue-500&quot;></i><span>Your selfie goes here<br><span class=&quot;font-normal text-xs&quot;>images/profile.jpg</span></span>'}))">
+                </div>
+            </div>
+        </section>
 
-<section class="block" id="about">
-  <div class="wrap two-col">
-    <div>
-      <h2>About me</h2>
-      <p>I'm a student who is focusing on real-time rendering and graphics programming. Experienced with C++, graphics 
-          mathematics, CPU rasterization, and CPU ray tracing. I'm Interested in understanding both the technical, design and narrative aspects 
-          of games. I'm building a portfolio around graphics engineering and game system analysis, while constantly thinking of new ideas about the games that I want to make.</p>
-    </div>
-    <div class="skills">
-      <h2>Skills</h2>
-      <h3>Languages</h3>
-      <ul class="tags"><li>C++</li><li>DirectX 11/12</li><li>Vulkan</li><li>OpenGL</li><li>C</li><li>Python</li><li>Java</li><li>HTML &amp; CSS</li></ul>
-      <h3>Frameworks and tools</h3>
-      <ul class="tags"><li>Unreal Engine</li><li>Git</li><li>Node.js</li></ul>
-      <h3>Other</h3>
-      <ul class="tags"><li>Teamwork</li><li>Problem solving</li><li>Game Design</li><li>Storytelling</li><li>Empathy</li></ul>
-    </div>
-  </div>
-</section>
+        <!-- Projects Section -->
+        <section id="projects" class="min-h-screen bg-brand-green py-24 px-12 md:px-24 lg:px-32 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-px bg-blue-900/15"></div>
 
-<section class="block" id="education">
-  <div class="wrap">
-    <h2>Education</h2>
-    <ul class="timeline">
-      <li>
-        <h3>MSc Computer Games Technology - Abertay University</h3>
-        <p class="when">2026 – Present</p>
-        <p>I'm currently on my first semester including modules of Graphics Programming, Game AI and Game Networking.</p>
-      </li>
-      <li>
-        <h3>BSc Computer Science - Hanoi University of Science and Technology / Troy University</h3>
-        <p class="when">2022-2026</p>
-        <p>I studied in a Computer Science programme of HUST in partner with Troy University. This was a big stepping stone 
-          for me to gain necessary skills and knowledge for game programming. Courses like Data Structures and Algorithms, 
-          Object-Oriented Programming, and Operating Systems were particularly helpful for my current pursuit: Computer Graphics in Video Games.</p>
-      </li>
-    </ul>
-  </div>
-</section>
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl text-slate-900 font-bold uppercase tracking-widest mb-4">Projects</h2>
+                <div class="w-full h-px bg-blue-900/15 mb-16"></div>
 
-<section class="block contact" id="contact">
-  <div class="wrap">
-    <h2>Get in touch</h2>
-    <p>I’m open to new opportunities and collaborations. The quickest way to reach me is by email.</p>
-    <div class="links">
-      <a class="btn primary" href="mailto:tn66638@gmail.com">Email Me: tn66638@gmail.com</a>
-      <a class="btn" href="https://github.com/trungbatto">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/trung-nguyen-7703b4287/">LinkedIn</a>
-      <a class="btn" href="NguyenQuangTrung_CV.pdf">Download CV</a>
-    </div>
-  </div>
-</section>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <a href="https://github.com/trungbatto/Simple_CPU_Rasterizer" target="_blank" class="block group bg-brand-greenLight rounded-xl border border-blue-900/15 overflow-hidden hover:border-blue-500/50 transition-colors duration-500 shadow-2xl">
+                        <div class="aspect-video bg-slate-200 relative overflow-hidden flex items-center justify-center">
+                            <img
+                                src="rasterizer.png"
+                                alt="Screenshot of the Simple CPU Rasterizer"
+                                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'text-slate-500 text-sm p-4 text-center',textContent:'Add rasterizer.png'}))"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl text-slate-900 font-bold mb-2 group-hover:text-blue-600 transition-colors">Simple CPU Rasterizer</h3>
+                            <p class="text-blue-700/80 text-sm font-bold mb-6 uppercase tracking-wider">C • SDL2</p>
+                            <ul class="space-y-3 text-slate-700 font-light text-sm list-none">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    A CPU-based 3D software rasterizer made from scratch in C using SDL2.
+                                </li><li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    Implements a complete 3D graphics pipeline entirely on the CPU, without relying on GPU rasterization APIs such as OpenGL or DirectX.
+                                </li><li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    Supports mesh loading, clipping, perspective projection, textured triangle rasterization, z-buffering, back-face culling, camera movement, and multiple rendering modes.
+                                </li>
+                            </ul>
+                            <p class="mt-6 text-blue-600 text-sm font-semibold"><i class="fa-brands fa-github mr-2"></i>View source code</p>
+                        </div>
+                    </a>
 
-<footer>
-  <div class="wrap">© 2026 Trung Nguyen · <a href="mailto:tn66638@gmail.com">tn66638@gmail.com</a></div>
-</footer>
+                    <a href="https://github.com/trungbatto/Simple_CPU_Ray_Tracer" target="_blank" class="block group bg-brand-greenLight rounded-xl border border-blue-900/15 overflow-hidden hover:border-blue-500/50 transition-colors duration-500 shadow-2xl">
+                        <div class="aspect-video bg-slate-200 relative overflow-hidden flex items-center justify-center">
+                            <img
+                                src="raytracer.png"
+                                alt="Render from the Simple CPU Ray Tracer"
+                                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'text-slate-500 text-sm p-4 text-center',textContent:'Add raytracer.png'}))"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl text-slate-900 font-bold mb-2 group-hover:text-blue-600 transition-colors">Simple CPU Ray Tracer</h3>
+                            <p class="text-blue-700/80 text-sm font-bold mb-6 uppercase tracking-wider">C++ • CMake • SDL2</p>
+                            <ul class="space-y-3 text-slate-700 font-light text-sm list-none">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    A basic ray tracer written in C++ using CMake, built by following the Ray Tracing in One Weekend tutorial series.
+                                </li><li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    Demonstrates core ray tracing concepts such as lighting, reflections and refractions.
+                                </li><li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    Includes BVH optimization to speed up ray-scene intersection.
+                                </li>
+                            </ul>
+                            <p class="mt-6 text-blue-600 text-sm font-semibold"><i class="fa-brands fa-github mr-2"></i>View source code</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
 
+        <!-- Projects In Development Section -->
+        <section id="in-development" class="bg-brand-green py-24 px-12 md:px-24 lg:px-32 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-px bg-blue-900/15"></div>
+
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl text-slate-900 font-bold uppercase tracking-widest mb-4">In Development</h2>
+                <div class="w-full h-px bg-blue-900/15 mb-16"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div class="block group bg-brand-greenLight rounded-xl border border-blue-900/15 overflow-hidden hover:border-blue-500/50 transition-colors duration-500 shadow-2xl">
+                        <div class="aspect-video bg-slate-200 relative overflow-hidden flex items-center justify-center">
+                            <img
+                                src="dx12.png"
+                                alt="Screenshot of the DirectX 12 graphics engine"
+                                class="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                                onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'text-slate-500 text-sm p-4 text-center',textContent:'Add dx12.png'}))"
+                            />
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl text-slate-900 font-bold mb-2 group-hover:text-blue-600 transition-colors">DirectX 12 Graphics Engine</h3>
+                            <p class="text-blue-700/80 text-sm font-bold mb-6 uppercase tracking-wider">C++ • DirectX 12</p>
+                            <ul class="space-y-3 text-slate-700 font-light text-sm list-none">
+                                <li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    A personal project currently in development using the DirectX 12 API and C++.
+                                </li><li class="flex items-start gap-3">
+                                    <i class="fa-solid fa-check text-blue-600 mt-1 text-xs"></i>
+                                    The goal is to build a graphics engine that implements modern graphics techniques.
+                                </li>
+                            </ul>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="bg-brand-green py-24 px-12 md:px-24 lg:px-32 relative">
+            <div class="absolute top-0 left-0 w-full h-px bg-blue-900/15"></div>
+
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl text-slate-900 font-bold uppercase tracking-widest mb-4">Skills</h2>
+                <div class="w-full h-px bg-blue-900/15 mb-16"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                    <div>
+                        <h3 class="text-sm text-slate-600 font-semibold uppercase tracking-wider mb-4">Languages &amp; APIs</h3>
+                        <ul class="flex flex-wrap gap-2"><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">C++</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">DirectX 11/12</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Vulkan</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">OpenGL</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">C</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Python</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Java</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">HTML &amp; CSS</li></ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-slate-600 font-semibold uppercase tracking-wider mb-4">Frameworks &amp; Tools</h3>
+                        <ul class="flex flex-wrap gap-2"><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Unreal Engine</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Git</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Unity</li></ul>
+                    </div>
+                    <div>
+                        <h3 class="text-sm text-slate-600 font-semibold uppercase tracking-wider mb-4">Other</h3>
+                        <ul class="flex flex-wrap gap-2"><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Teamwork</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Problem solving</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Game Design</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Storytelling</li><li class="px-3 py-1 text-xs font-semibold uppercase tracking-wider text-blue-600 border border-blue-300 bg-brand-greenLight rounded-full">Empathy</li></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="bg-brand-green py-24 px-12 md:px-24 lg:px-32 relative">
+            <div class="absolute top-0 left-0 w-full h-px bg-blue-900/15"></div>
+
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl text-slate-900 font-bold uppercase tracking-widest mb-4">Education</h2>
+                <div class="w-full h-px bg-blue-900/15 mb-16"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <a href="https://www.abertay.ac.uk/course-search/postgraduate-taught/computer-games-technology/" target="_blank" class="block group bg-brand-greenLight rounded-xl border border-blue-900/15 p-8 hover:border-blue-500/50 transition-colors duration-500 shadow-2xl">
+                        <div class="flex items-center gap-5 mb-5">
+                            <div class="w-16 h-16 shrink-0 rounded-full border-2 border-blue-900/15 overflow-hidden">
+                                <img src="images/abertay.png" alt="Abertay University" class="w-full h-full object-cover" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'w-full h-full flex items-center justify-center text-sm font-bold bg-brand-grey',textContent:'AU'}))">
+                            </div>
+                            <div>
+                                <h3 class="text-xl text-slate-900 font-bold group-hover:text-blue-600 transition-colors">MSc Computer Games Technology</h3>
+                                <p class="text-blue-700/80 text-sm font-bold uppercase tracking-wider">Abertay University &bull; 2026 – Present</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-700 font-light text-sm leading-relaxed">Currently in my first semester, with modules in Graphics Programming, Game AI and Game Networking.</p>
+                    </a>
+
+                    <div class="block group bg-brand-greenLight rounded-xl border border-blue-900/15 p-8 shadow-2xl">
+                        <div class="flex items-center gap-5 mb-5">
+                            <div class="w-16 h-16 shrink-0 rounded-full border-2 border-blue-900/15 overflow-hidden">
+                                <img src="images/hust.png" alt="Hanoi University of Science and Technology" class="w-full h-full object-cover" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'w-full h-full flex items-center justify-center text-sm font-bold bg-brand-grey',textContent:'HUST'}))">
+                            </div>
+                            <div>
+                                <h3 class="text-xl text-slate-900 font-bold">BSc Computer Science</h3>
+                                <p class="text-blue-700/80 text-sm font-bold uppercase tracking-wider">HUST / Troy University &bull; 2022 – 2026</p>
+                            </div>
+                        </div>
+                        <p class="text-slate-700 font-light text-sm leading-relaxed">Studied the Computer Science programme at Hanoi University of Science and Technology in partnership with Troy University. Courses like Data Structures and Algorithms, Object-Oriented Programming and Operating Systems gave me the skills and knowledge for game programming, and are particularly helpful for my current focus: computer graphics in video games.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resume Section -->
+        <section id="resume" class="bg-brand-green py-24 px-12 md:px-24 lg:px-32 relative">
+            <div class="absolute top-0 left-0 w-full h-px bg-blue-900/15"></div>
+
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl md:text-5xl text-slate-900 font-bold uppercase tracking-widest mb-4">Resume</h2>
+                <div class="w-full h-px bg-blue-900/15 mb-12"></div>
+
+                <div class="flex flex-wrap justify-between items-center gap-6 mb-8">
+                    <div class="flex gap-4">
+                        <a href="https://github.com/trungbatto" target="_blank" aria-label="GitHub" class="w-12 h-12 rounded-full bg-blue-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors shrink-0">
+                            <i class="fa-brands fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/trung-nguyen-7703b4287/" target="_blank" aria-label="LinkedIn" class="w-12 h-12 rounded-full bg-blue-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors shrink-0">
+                            <i class="fa-brands fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="mailto:tn66638@gmail.com" aria-label="Email" class="w-12 h-12 rounded-full bg-blue-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-colors shrink-0">
+                            <i class="fa-solid fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                    <a href="NguyenQuangTrung_CV.pdf" download class="text-sm bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded transition-colors font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                </div>
+
+                <!-- Embedded CV -->
+                <div class="bg-[#323639] rounded-lg border border-blue-900/15 overflow-hidden shadow-inner h-[85vh]">
+                    <iframe src="NguyenQuangTrung_CV.pdf" class="w-full h-full border-none" title="Resume PDF"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- About / Footer Section -->
+        <section id="about" class="bg-brand-grey border-t border-blue-900/15 pt-20 pb-10 px-12 md:px-24 lg:px-32">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                
+                <!-- About Info -->
+                <div class="md:col-span-1">
+                    <h2 class="text-2xl font-bold uppercase tracking-wider mb-6">About <span class="text-blue-600">Me</span></h2>
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 font-light">
+                        I'm a student focusing on real-time rendering and graphics programming, experienced with C++, graphics mathematics, CPU rasterization, and CPU ray tracing. I'm interested in understanding the technical, design and narrative aspects of games. I'm building a portfolio around graphics engineering and game system analysis, while constantly thinking of new ideas for the games I want to make.
+                    </p>
+                    <a href="mailto:tn66638@gmail.com" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-500 transition-colors text-sm font-semibold">
+                        <i class="fa-solid fa-paper-plane"></i> Open to opportunities and collaborations
+                    </a>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="md:col-span-1 md:pl-12">
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-6 text-slate-700">Navigation</h3>
+                    <ul class="space-y-3 text-sm text-slate-600 font-light">
+                        <li><a href="#home" class="hover:text-blue-600 transition-colors">Home Overview</a></li>
+                        <li><a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a></li>
+                        <li><a href="#skills" class="hover:text-blue-600 transition-colors">Skills</a></li>
+                        <li><a href="#education" class="hover:text-blue-600 transition-colors">Education</a></li>
+                        <li><a href="#resume" class="hover:text-blue-600 transition-colors">Resume</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Info -->
+                <div class="md:col-span-1">
+                    <h3 class="text-lg font-bold uppercase tracking-wider mb-6 text-slate-700">Contact & Info</h3>
+                    <ul class="space-y-4 text-sm text-slate-600 font-light">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-envelope mt-1 text-blue-600"></i>
+                            <div>
+                                <strong class="block text-slate-900">Email</strong>
+                                <a href="mailto:tn66638@gmail.com" class="hover:text-blue-600 transition-colors">tn66638@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-graduation-cap mt-1 text-blue-600"></i>
+                            <div>
+                                <strong class="block text-slate-900">Education</strong>
+                                MSc Computer Games Technology, Abertay University<br>
+                                BSc Computer Science, HUST / Troy University
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-file-pdf mt-1 text-blue-600"></i>
+                            <div>
+                                <strong class="block text-slate-900">CV</strong>
+                                <a href="NguyenQuangTrung_CV.pdf" class="hover:text-blue-600 transition-colors">Download CV</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="max-w-7xl mx-auto border-t border-blue-900/15 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
+                <p>&copy; 2026 Trung Nguyen. All rights reserved.</p>
+                <div class="flex gap-4">
+                    <a href="https://github.com/trungbatto" target="_blank" class="hover:text-slate-900 transition-colors">GitHub</a>
+                    <a href="https://www.linkedin.com/in/trung-nguyen-7703b4287/" target="_blank" class="hover:text-slate-900 transition-colors">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Active Link & Scroll JS -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-link");
+
+            // Scroll spy functionality
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach((section) => {
+                    const sectionTop = section.offsetTop;
+                    // Trigger point slightly above the section top
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach((link) => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href").includes(current) && current !== "") {
+                        link.classList.add("active");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
